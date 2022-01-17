@@ -29,12 +29,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(showScore))
+        
         button1.layer.borderWidth = 1
         button2.layer.borderWidth = 1
         button3.layer.borderWidth = 1
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
+        
         
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
         askQuestion()
@@ -59,6 +62,15 @@ class ViewController: UIViewController {
         score = 0
         correctAnswer = 0
         askQuestion()
+    }
+    
+    @objc func showScore() {
+        let item = "Your score is \(String(score))"
+        let vc = UIActivityViewController(activityItems: [item], applicationActivities: [])
+            vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+            present(vc, animated: true)
+            
+        
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
