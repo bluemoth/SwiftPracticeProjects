@@ -12,6 +12,7 @@ class ViewController: UITableViewController {
     var allWords = [String]()
     var usedWords = [String]()
     var selectedWord: String = ""
+    
     // add enum for challenge2; error states based on user submitted answers
     enum errorState {
         case isRealError
@@ -50,14 +51,11 @@ class ViewController: UITableViewController {
         let ac = UIAlertController(title: "Enter answer", message: nil, preferredStyle: .alert)
         ac.addTextField()
 
-        print("before let submit action")
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
-            print("inside closure")
             guard let answer = ac?.textFields?[0].text else { return }
             self?.submit(answer)
         }
 
-        print("before present")
         ac.addAction(submitAction)
         present(ac, animated: true)
     }
@@ -68,7 +66,7 @@ class ViewController: UITableViewController {
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
+                    usedWords.insert(answer.lowercased(), at: 0)
 
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
@@ -83,10 +81,6 @@ class ViewController: UITableViewController {
         } else {
             showErrorMessage(.isPossibleError)
         }
-
-//        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
-//        ac.addAction(UIAlertAction(title: "OK", style: .default))
-//        present(ac, animated: true)
     }
     func isPossible(word: String) -> Bool {
         guard var tempWord = title?.lowercased() else { return false }
