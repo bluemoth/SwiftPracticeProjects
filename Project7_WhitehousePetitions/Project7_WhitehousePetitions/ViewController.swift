@@ -17,8 +17,6 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // Challenge 1: Add a Credits button to the top-right corner using UIBarButtonItem. When this is tapped, show an alert telling users the data comes from the We The People API of the Whitehouse.
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(showCredits))
         
@@ -68,13 +66,17 @@ class ViewController: UITableViewController {
     // Part of challenge 2; function that backs promptSearch method. Takes user input and extracts relevant petitions
     // does depend on casing for str
     func beginSearch(_ str: String) {
-        filteredPetitions.removeAll(keepingCapacity: true)
-        for singlePetition in petitions {
-            if singlePetition.title.contains(str) {
-                filteredPetitions.append(singlePetition)
+        if str.isEmpty {
+            return
+        } else {
+            filteredPetitions.removeAll(keepingCapacity: true)
+            for singlePetition in petitions {
+                if singlePetition.title.contains(str) {
+                    filteredPetitions.append(singlePetition)
+                }
             }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     func showError() {
