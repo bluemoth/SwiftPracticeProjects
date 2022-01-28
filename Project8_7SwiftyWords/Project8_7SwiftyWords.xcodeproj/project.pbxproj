@@ -13,6 +13,7 @@
 		866C7F5727A208AB007FDE3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866C7F5527A208AB007FDE3F /* Main.storyboard */; };
 		866C7F5927A208AC007FDE3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866C7F5827A208AC007FDE3F /* Assets.xcassets */; };
 		866C7F5C27A208AC007FDE3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866C7F5A27A208AC007FDE3F /* LaunchScreen.storyboard */; };
+		866ECDEC27A3551300ABA12A /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 866ECDEB27A3551300ABA12A /* level1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		866C7F5827A208AC007FDE3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		866C7F5B27A208AC007FDE3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		866C7F5D27A208AC007FDE3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		866ECDEB27A3551300ABA12A /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				866C7F5827A208AC007FDE3F /* Assets.xcassets */,
 				866C7F5A27A208AC007FDE3F /* LaunchScreen.storyboard */,
 				866C7F5D27A208AC007FDE3F /* Info.plist */,
+				866ECDEB27A3551300ABA12A /* level1.txt */,
 			);
 			path = Project8_7SwiftyWords;
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866C7F5C27A208AC007FDE3F /* LaunchScreen.storyboard in Resources */,
+				866ECDEC27A3551300ABA12A /* level1.txt in Resources */,
 				866C7F5927A208AC007FDE3F /* Assets.xcassets in Resources */,
 				866C7F5727A208AB007FDE3F /* Main.storyboard in Resources */,
 			);
