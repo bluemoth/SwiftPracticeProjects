@@ -9,16 +9,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // define labels, current answer text field, and letter buttons
+    // hints for the word
     var cluesLabel: UILabel!
+    // answers label is really # characters in the answer...
     var answersLabel: UILabel!
+    // user text field that fills when buttons tapped
     var currentAnswer: UITextField!
+
     var scoreLabel: UILabel!
+    // array of buttons to hold leter groups, used in load level for matching to letter bits
     var letterButtons = [UIButton]()
     
+    // ghost activated buttons and solutions
     var activatedButtons = [UIButton]()
     var solutions = [String]()
     
-    var score = 0
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
     var level = 1
     
     
@@ -58,20 +69,23 @@ class ViewController: UIViewController {
         currentAnswer.isUserInteractionEnabled = false
         view.addSubview(currentAnswer)
         
+        // code generated button for submitting answer
         let submit = UIButton(type: .system)
         submit.translatesAutoresizingMaskIntoConstraints = false
         submit.setTitle("SUBMIT", for: .normal)
         view.addSubview(submit)
+        // caller for submit button tap
         submit.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
 
-        
+        // code generated button for clearing answer
         let clear = UIButton(type: .system)
         clear.translatesAutoresizingMaskIntoConstraints = false
         clear.setTitle("CLEAR", for: .normal)
         view.addSubview(clear)
+        // caller for cler button tap
         clear.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
 
-        
+        // create a view placeholder for future array of buttons
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonsView)
@@ -136,28 +150,35 @@ class ViewController: UIViewController {
             for col in 0..<5 {
                 // create a new button and give it a big font size
                 let letterButton = UIButton(type: .system)
+                
+                // Challenge #1; create borders around the letterButtons to make it stand out
+                letterButton.layer.borderWidth = 1
                 letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
 
                 // give the button some temporary text so we can see it on-screen
                 letterButton.setTitle("WWW", for: .normal)
 
-                // calculate the frame of this button using its column and row`
+                // calculate the frame of this button using its column and row
                 let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
 
                 // add it to the buttons view
                 buttonsView.addSubview(letterButton)
-
+                
+                // Challenge #1; create borders around buttonView
+                buttonsView.layer.borderColor = UIColor.gray.cgColor
+                buttonsView.layer.borderWidth = 3
+                buttonsView.layer.cornerRadius = 5
+                    
                 // and also to our letterButtons array
                 letterButtons.append(letterButton)
+                
+                // caller for the letterbuttons function
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
 
             }
         }
-        
-        
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,11 +196,13 @@ class ViewController: UIViewController {
     
     @objc func submitTapped(_ sender: UIButton) {
         guard let answerText = currentAnswer.text else {return}
+
         
         if let solutionsPosition = solutions.firstIndex(of: answerText) {
             activatedButtons.removeAll()
             
             var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
+            
             splitAnswers?[solutionsPosition] = answerText
             answersLabel.text = splitAnswers?.joined(separator: "\n")
             
@@ -191,8 +214,14 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's Go", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            // Challenge #2 : If the user enters an incorrect guess, show an alert telling them they are wrong.
+            // You’ll need to extend the submitTapped()
+            // method so that if firstIndex(of:) failed to find the guess you show the alert.
+            let ac = UIAlertController(title: "Incorrect answer!", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Guess again...", style: .default, handler: nil))
+            present(ac, animated: true)
         }
-        
     }
     
     @objc func clearTapped(_ sender: UIButton) {
