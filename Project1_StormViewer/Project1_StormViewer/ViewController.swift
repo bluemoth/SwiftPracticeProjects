@@ -18,7 +18,10 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        
+        performSelector(inBackground: #selector(loadImages), with: nil)
+    }
+    
+    @objc func loadImages() {
         // let fm = file manager default from system
         let fm = FileManager.default
         
@@ -36,8 +39,7 @@ class ViewController: UITableViewController {
             }
         }
         pictures = pictures.sorted()
-        print(pictures)
-        
+        tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
     }
     
     
