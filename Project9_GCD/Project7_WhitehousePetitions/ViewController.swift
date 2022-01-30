@@ -23,11 +23,14 @@ class ViewController: UITableViewController {
         // Challenge 2:Let users filter the petitions they see. This involves creating a second array of filtered items that contains only petitions matching a string the user entered. Use a UIAlertController with a text field to let them enter that string.
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(promptSearch))
         
+        print("***ViewDidLoad function is on main thread: \(Thread.isMainThread)\n")
+        
         performSelector(inBackground: #selector(fetchJSON), with: nil)
         
     }
     
     func parse(json: Data) {
+        print("***Parse function is on main thread: \(Thread.isMainThread)\n")
         let decoder = JSONDecoder()
 
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
@@ -40,6 +43,7 @@ class ViewController: UITableViewController {
     }
 
     @objc func showError() {
+        print("***Show error function is on main thread: \(Thread.isMainThread)")
         let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
@@ -47,6 +51,7 @@ class ViewController: UITableViewController {
     
     @objc func fetchJSON() {
         let urlString: String
+        print("***FetchJSON function is on main thread: \(Thread.isMainThread)\n")
 
         if navigationController?.tabBarItem.tag == 0 {
             //urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
@@ -69,16 +74,22 @@ class ViewController: UITableViewController {
     // Part of challenge 2; function that backs promptSearch method. Takes user input and extracts relevant petitions
     // does depend on casing for str
     func beginSearch(_ str: String) {
-        if str.isEmpty {
-            return
-        } else {
-            filteredPetitions.removeAll(keepingCapacity: true)
-            for singlePetition in petitions {
-                if singlePetition.title.contains(str) {
-                    filteredPetitions.append(singlePetition)
+        DispatchQueue.global().async {
+            print("***BeginSearch function is on main thread: \(Thread.isMainThread)\n")
+            if str.isEmpty {
+                return
+            } else {
+                self.filteredPetitions.removeAll(keepingCapacity: true)
+                for singlePetition in self.petitions {
+                    if singlePetition.title.contains(str) {
+                        self.filteredPetitions.append(singlePetition)
+                    }
+                }
+                DispatchQueue.main.async {
+                    print("TableView Reload Else is on main thread: \(Thread.isMainThread)\n")
+                    self.tableView.reloadData()
                 }
             }
-            tableView.reloadData()
         }
     }
     
