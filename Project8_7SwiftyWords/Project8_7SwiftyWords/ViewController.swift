@@ -183,7 +183,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadLevel()
+        performSelector(inBackground: #selector(loadLevel), with: nil)
 
     }
     
@@ -245,7 +245,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func loadLevel() {
+    @objc func loadLevel() {
+        print("\nLoadLevel function is on main thread: \(Thread.isMainThread)\n")
         var clueString = ""
         var solutionString = ""
         var letterBits = [String]()
@@ -279,14 +280,17 @@ class ViewController: UIViewController {
                 }
             }
         }
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        DispatchQueue.main.async { [self] in
+            print("\nOn Main thread: \(Thread.isMainThread)\n")
+            self.cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        letterBits.shuffle()
+            letterBits.shuffle()
 
-        if letterBits.count == letterButtons.count {
-            for i in 0 ..< letterButtons.count {
-                letterButtons[i].setTitle(letterBits[i], for: .normal)
+            if letterBits.count == self.letterButtons.count {
+                for i in 0 ..< self.letterButtons.count {
+                    letterButtons[i].setTitle(letterBits[i], for: .normal)
+                }
             }
         }
     }
