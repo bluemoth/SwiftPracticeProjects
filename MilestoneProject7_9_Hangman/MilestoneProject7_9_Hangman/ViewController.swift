@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var chosenLetter: UITextField!
     var usedLetters: UILabel!
     var wordToGuess: UILabel!
+    var letterButtons = [UIButton]()
     let hangManArt = ["""
       +---+
       |   |
@@ -88,6 +89,10 @@ class ViewController: UIViewController {
         clear.setTitle("Clear", for: .normal)
         view.addSubview(clear)
         
+        let buttonsView = UIView()
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonsView)
+        
         gameArt = UILabel()
         gameArt.translatesAutoresizingMaskIntoConstraints = false
         gameArt.font = UIFont.systemFont(ofSize: 32)
@@ -111,13 +116,6 @@ class ViewController: UIViewController {
         chosenLetter.isUserInteractionEnabled = true
         view.addSubview(chosenLetter)
         
-        usedLetters = UILabel()
-        usedLetters.translatesAutoresizingMaskIntoConstraints = false
-        usedLetters.text = "Used letters will show up here..."
-        usedLetters.textAlignment = .left
-        usedLetters.font = UIFont.systemFont(ofSize: 25)
-        usedLetters.isUserInteractionEnabled = false
-        view.addSubview(usedLetters)
         
         NSLayoutConstraint.activate([
             gameArt.heightAnchor.constraint(equalToConstant: 300),
@@ -141,10 +139,46 @@ class ViewController: UIViewController {
             clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
             clear.heightAnchor.constraint(equalToConstant: 35),
             
-            usedLetters.topAnchor.constraint(equalTo: clear.bottomAnchor),
-            usedLetters.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            usedLetters.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            buttonsView.widthAnchor.constraint(equalToConstant: 200),
+            buttonsView.heightAnchor.constraint(equalToConstant: 200),
+            buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
+            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
+            
         ])
+        
+        // set some values for the width and height of each button
+        let width = 15
+        let height = 15
+
+        // create 26 buttons as a 2x13 grid
+        for row in 0..<2 {
+            for col in 0..<13 {
+                // create a new button and give it a big font size
+                let letterButton = UIButton(type: .system)
+                letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+
+                // give the button some temporary text so we can see it on-screen
+                letterButton.setTitle("?", for: .normal)
+
+                // calculate the frame of this button using its column and row
+                let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
+                letterButton.frame = frame
+
+                // add it to the buttons view
+                buttonsView.addSubview(letterButton)
+
+                // and also to our letterButtons array
+                letterButtons.append(letterButton)
+            }
+        }
+        
+//        buttonsView.backgroundColor = .gray
+//        submit.backgroundColor = .red
+//        clear.backgroundColor = .blue
+//        gameArt.backgroundColor = .brown
+//        wordToGuess.backgroundColor = .cyan
+//        chosenLetter.backgroundColor = .systemPink
         
         }
     
@@ -156,9 +190,9 @@ class ViewController: UIViewController {
     }
     
     func beginGame() {
-        gameArt.text = hangManArt[0]
+        gameArt.text = hangManArt[5]
         wordToGuess.text = getRandomWord()
-        
+
     }
     
     func getRandomWord() -> String {
