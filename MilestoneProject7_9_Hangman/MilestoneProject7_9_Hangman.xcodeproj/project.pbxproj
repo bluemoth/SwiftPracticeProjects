@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8606D86C27AD9AC800160561 /* alphabet.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8606D86B27AD9AC800160561 /* alphabet.txt */; };
 		8671722027A61A8600291CC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8671721F27A61A8600291CC3 /* AppDelegate.swift */; };
 		8671722227A61A8600291CC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8671722127A61A8600291CC3 /* SceneDelegate.swift */; };
 		8671722427A61A8600291CC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8671722327A61A8600291CC3 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8606D86B27AD9AC800160561 /* alphabet.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alphabet.txt; sourceTree = "<group>"; };
 		8671721C27A61A8600291CC3 /* MilestoneProject7_9_Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MilestoneProject7_9_Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8671721F27A61A8600291CC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8671722127A61A8600291CC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				8671722827A61A8800291CC3 /* Assets.xcassets */,
 				8671722A27A61A8800291CC3 /* LaunchScreen.storyboard */,
 				8671722D27A61A8800291CC3 /* Info.plist */,
+				8606D86B27AD9AC800160561 /* alphabet.txt */,
 			);
 			path = MilestoneProject7_9_Hangman;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				8671722C27A61A8800291CC3 /* LaunchScreen.storyboard in Resources */,
 				8671722927A61A8800291CC3 /* Assets.xcassets in Resources */,
 				8671722727A61A8600291CC3 /* Main.storyboard in Resources */,
+				8606D86C27AD9AC800160561 /* alphabet.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
