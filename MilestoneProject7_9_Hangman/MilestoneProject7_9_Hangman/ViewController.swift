@@ -202,11 +202,10 @@ class ViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(beginGame))
         
-        // *******Need to fix this part
-        //beginGame(action: )
+        beginGame()
     }
     
-    @objc func beginGame(action: UIAlertAction) {
+    @objc func beginGame(action: UIAlertAction! = nil) {
         gameArt.text = hangManArt[0]
         wordToGuessLabel.text = getRandomWord()
 
@@ -249,29 +248,33 @@ class ViewController: UIViewController {
     
     @objc func submitTapped(_ sender: UIButton) {
         guard let selectedLetter = chosenLetter.text else {return}
-        chosenLetter.text = ""
-        let selectedChar = Character(selectedLetter)
-        usedLetters.append(selectedChar)
-        if wordToGuess.contains(selectedLetter) {
-            print(true)
+    
+        if selectedLetter == "" {
+            let ac = UIAlertController(title: "No letter selected", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(ac, animated: true)
+            return
+        
+        } else if wordToGuess.contains(selectedLetter) {
+            usedLetters.append(Character(selectedLetter))
             for (index, letter) in wordToGuess.enumerated() {
                 if String(letter) == selectedLetter {
-                    print(letter)
-                    print(selectedChar)
-                    maskedWord = replace(myString: maskedWord, index, selectedChar)
+                    maskedWord = replace(myString: maskedWord, index, Character(selectedLetter))
                 }
             }
         } else {
             wrongAnswers += 1
+            usedLetters.append(Character(selectedLetter))
             if wrongAnswers > 5 {
                 gameOver(false)
-                return
             }
         }
         wordToGuessLabel.text = maskedWord
         if maskedWord == wordToGuess {
             gameOver(true)
         }
+        chosenLetter.text = ""
+        print(usedLetters)
     }
     
     func gameOver(_ winLose: Bool) {
@@ -287,9 +290,12 @@ class ViewController: UIViewController {
     }
     
     @objc func clearTapped(_ sender: UIButton) {
-        chosenLetter.text = ""
-        
-        activatedButtons.last?.isHidden = false
+        if chosenLetter.text == "" {
+            return
+        } else {
+            activatedButtons.last?.isHidden = false
+            chosenLetter.text = ""
+        }
     }
 
     
