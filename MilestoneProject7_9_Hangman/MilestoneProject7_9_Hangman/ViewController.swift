@@ -207,6 +207,9 @@ class ViewController: UIViewController {
     
     @objc func beginGame(action: UIAlertAction! = nil) {
         gameArt.text = hangManArt[0]
+        usedLetters.removeAll()
+        wrongAnswers = 0
+        maskedWord = ""
         wordToGuessLabel.text = getRandomWord()
 
         for btn in activatedButtons {
@@ -228,7 +231,12 @@ class ViewController: UIViewController {
     }
     
     func getRandomWord() -> String {
-        wordToGuess = "rhythm"
+        if let wordFileURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
+            if let wordContents = try? String(contentsOf: wordFileURL) {
+                let words = wordContents.components(separatedBy: "\n")
+                wordToGuess = words.randomElement()!
+            }
+        }
         return maskWord(word: wordToGuess)
     }
     
@@ -283,7 +291,7 @@ class ViewController: UIViewController {
             ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
             present(ac, animated: true)
         } else {
-            let ac = UIAlertController(title: "Game Over", message: "You lose!", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Game Over", message: "You lose! The word was \(wordToGuess).", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
             present(ac, animated: true)
         }

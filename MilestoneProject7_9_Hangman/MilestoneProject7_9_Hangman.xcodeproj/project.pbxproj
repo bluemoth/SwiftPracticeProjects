@@ -14,6 +14,7 @@
 		8671722727A61A8600291CC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8671722527A61A8600291CC3 /* Main.storyboard */; };
 		8671722927A61A8800291CC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8671722827A61A8800291CC3 /* Assets.xcassets */; };
 		8671722C27A61A8800291CC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8671722A27A61A8800291CC3 /* LaunchScreen.storyboard */; };
+		86F89D4027B2E9DE009FB951 /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 86F89D3F27B2E9DE009FB951 /* start.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8671722827A61A8800291CC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8671722B27A61A8800291CC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8671722D27A61A8800291CC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86F89D3F27B2E9DE009FB951 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = start.txt; path = ../../Project5_WordScramble/Project5_WordScramble/start.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				8671722A27A61A8800291CC3 /* LaunchScreen.storyboard */,
 				8671722D27A61A8800291CC3 /* Info.plist */,
 				8606D86B27AD9AC800160561 /* alphabet.txt */,
+				86F89D3F27B2E9DE009FB951 /* start.txt */,
 			);
 			path = MilestoneProject7_9_Hangman;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				8671722927A61A8800291CC3 /* Assets.xcassets in Resources */,
 				8671722727A61A8600291CC3 /* Main.storyboard in Resources */,
 				8606D86C27AD9AC800160561 /* alphabet.txt in Resources */,
+				86F89D4027B2E9DE009FB951 /* start.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
