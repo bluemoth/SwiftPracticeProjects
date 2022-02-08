@@ -97,17 +97,40 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.item]
         
-        let ac = UIAlertController(title: "Rename Person", message: nil, preferredStyle: .alert)
-        ac.addTextField()
-        
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else {return}
-            person.name = newName
-            self?.collectionView.reloadData()
+        // Challenge 1: Add a second UIAlertController that gets shown when the user taps a picture, asking them whether they want to rename the person or delete them.
+        let ac = UIAlertController(title: "Select an option:", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Rename", style: .default, handler: { [weak self] _ in
+            let ac = UIAlertController(title: "Enter new name:", message: nil, preferredStyle: .alert)
+            ac.addTextField()
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, weak ac] _ in
+                guard let newName = ac?.textFields?[0].text else {return}
+                person.name = newName
+                self?.collectionView.reloadData()
+            }))
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self?.present(ac, animated: true)
         }))
-        
+        ac.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
+            let ac = UIAlertController(title: "Confirm delete?", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                // delete the person (just delete cell for now)
+                self?.people.remove(at: indexPath.item)
+                self?.collectionView.reloadData()
+            }))
+            
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(ac, animated: true)
+        }))
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
+    }
+    
+    @objc func renamePerson() {
+        
+    }
+    
+    @objc func deletePerson() {
+        
     }
 
 }
