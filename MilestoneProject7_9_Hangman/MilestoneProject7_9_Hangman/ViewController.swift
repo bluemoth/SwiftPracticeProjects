@@ -109,6 +109,7 @@ class ViewController: UIViewController {
         gameArt = UILabel()
         gameArt.translatesAutoresizingMaskIntoConstraints = false
         gameArt.font = UIFont.systemFont(ofSize: 32)
+        gameArt.textColor = .black
         gameArt.numberOfLines = 0
         gameArt.textAlignment = .center
         gameArt.layer.borderWidth = 1
@@ -117,6 +118,7 @@ class ViewController: UIViewController {
         wordToGuessLabel = UILabel()
         wordToGuessLabel.translatesAutoresizingMaskIntoConstraints = false
         wordToGuessLabel.text = ""
+        wordToGuessLabel.textColor = .black
         wordToGuessLabel.font = UIFont.systemFont(ofSize: 32)
         wordToGuessLabel.textAlignment = .center
         view.addSubview(wordToGuessLabel)
@@ -124,6 +126,7 @@ class ViewController: UIViewController {
         chosenLetter = UITextField()
         chosenLetter.translatesAutoresizingMaskIntoConstraints = false
         chosenLetter.placeholder = "Enter a letter"
+        chosenLetter.textColor = .black
         chosenLetter.textAlignment = .center
         chosenLetter.font = UIFont.systemFont(ofSize: 30)
         chosenLetter.isUserInteractionEnabled = true

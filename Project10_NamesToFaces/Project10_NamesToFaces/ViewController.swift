@@ -18,8 +18,26 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         // add button on left to allow user to select an image within directory
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraShot))
         
     }
+    // Challenge 2: Try using picker.sourceType = .camera when creating your image picker, which will tell it to create a new image by taking a photo. This is only available on devices (not on the simulator) so you might want to check the return value of UIImagePickerController.isSourceTypeAvailable() before trying to use it!
+    @objc func cameraShot() {
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+            picker.allowsEditing = true
+            picker.delegate = self
+            present(picker, animated: true)
+        } else {
+            let ac = UIAlertController(title: "No Camera Available", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+            return
+        }
+        
+    }
+    
     // function call for adder button. ViewController set as the delegate
     @objc func addNewPerson() {
         let picker = UIImagePickerController()
@@ -124,14 +142,5 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
     }
-    
-    @objc func renamePerson() {
-        
-    }
-    
-    @objc func deletePerson() {
-        
-    }
-
 }
 
