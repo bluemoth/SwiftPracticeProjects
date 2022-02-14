@@ -11,6 +11,8 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreLabel: SKLabelNode!
+    var ballColors: [String] = ["ballRed", "ballBlue", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    var ballCount: Int = 0
     
     var score = 0 {
         didSet {
@@ -87,16 +89,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
+                box.name = "box"
+                //print("adding \(box.name)")
                 addChild(box)
                 
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                ball.physicsBody?.restitution = 0.4
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                ball.position = location
-                ball.name = "ball"
-                addChild(ball)
+                // Challenge 3) limit user to only 5 balls
+                if ballCount > 4 {
+                    // Self Challenge - If run out of balls, create a prompt that print user score and allow them to reset?
+                    // Almost working, needs to wait for score to completely update however before presenting message
+                    DispatchQueue.main.async {
+                        let ac = UIAlertController(title: "Game Over", message: "Your Score is \(self.score)", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: {_ in
+                            self.score = 0
+                            self.ballCount = 0}))
+                        self.view?.window?.rootViewController?.present(ac, animated: true, completion: nil)
+                    }
+                    print(ballCount)
+                    return
+                } else {
+                    ballCount += 1
+                    // Challenge 1) Instead of creating only a red ball, randomly generate other color balls in assets
+                    let ballColor = ballColors.randomElement()
+                    let ball = SKSpriteNode(imageNamed: ballColor!)
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody?.restitution = 0.4
+                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                    // Challenge 2) Only let user vary the x-position of ball generation, height to be at top of board
+                    ball.position = CGPoint(x: location.x, y: 680)
+                    ball.name = "ball"
+                    addChild(ball)
+                    print(ballCount)
+                }
             }
         }
     }
@@ -112,7 +136,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeSlot(at position: CGPoint, isGood: Bool) {
         var slotBase: SKSpriteNode
         var slotGlow: SKSpriteNode
-        
         
         if isGood {
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
@@ -143,9 +166,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if object.name == "good" {
             score += 1
             destroy(ball: ball)
+            // Challenge 3) if ball hit good slot, give the user another ball
+            ballCount -= 1
+            print(ballCount)
         } else if object.name == "bad" {
             score -= 1
             destroy(ball: ball)
+        } else if object.name == "box" {
+            // Challenge 3) destory ball and object if object is box
+            destroy(ball: ball)
+            destroy(ball: object)
         }
     }
 
