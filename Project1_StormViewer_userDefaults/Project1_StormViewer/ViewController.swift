@@ -71,9 +71,12 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let picCount = pics[indexPath.row].tapCount
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
         cell.textLabel?.text = pics[indexPath.row].picture
         cell.textLabel?.font = UIFont(name: "Noteworthy", size: 20)
+        cell.detailTextLabel?.text = "TapCount = \(picCount)"
         
         return cell
     }
@@ -89,10 +92,10 @@ class ViewController: UITableViewController {
             vc.selectedImage = pics[indexPath.row].picture
             vc.pictureNumber = indexPath.row+1
             vc.numPictures = pics.count
-            vc.timesClicked = pic.tapCount
             navigationController?.pushViewController(vc, animated: true)
         }
         self.save()
+        tableView.reloadData()
     }
     
     func save() {

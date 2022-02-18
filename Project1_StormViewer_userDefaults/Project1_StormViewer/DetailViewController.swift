@@ -13,12 +13,11 @@ class DetailViewController: UIViewController {
     var selectedImage: String?
     var pictureNumber: Int?
     var numPictures: Int?
-    var timesClicked: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Picture \(pictureNumber!) of \(numPictures!) & tapped \(timesClicked!)"
+        title = "Picture \(pictureNumber!) of \(numPictures!)"
         navigationItem.largeTitleDisplayMode = .never
 
         // Do any additional setup after loading the view.
@@ -35,6 +34,7 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+        
     }
     
 
