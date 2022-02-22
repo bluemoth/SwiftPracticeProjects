@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealCell" rowHeight="73" id="KGk-i7-Jjw" customClass="MealCell" customModule="MilestoneProject10_12" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="527" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="527" height="159"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEE-QR-1Um">
+                        <rect key="frame" x="10" y="10" width="507" height="120"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvo-fU-1Gz">
+                                <rect key="frame" x="20" y="10" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="6ae-ez-KaJ"/>
+                                    <constraint firstAttribute="height" constant="100" id="ocF-vV-2fu"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKD-M9-9WW">
+                                <rect key="frame" x="235.5" y="10" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="text" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="abS-Dq-eYl">
+                                <rect key="frame" x="228" y="33" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Macros" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6L-37-i07">
+                                <rect key="frame" x="135" y="21" width="101" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83959192037582397" green="0.8982427716255188" blue="0.95660954713821411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nKD-M9-9WW" firstAttribute="top" secondItem="lEE-QR-1Um" secondAttribute="top" constant="10" id="J9M-Do-yqj"/>
+                            <constraint firstItem="nvo-fU-1Gz" firstAttribute="leading" secondItem="lEE-QR-1Um" secondAttribute="leading" constant="20" id="awJ-LI-4Li"/>
+                            <constraint firstItem="nvo-fU-1Gz" firstAttribute="centerY" secondItem="lEE-QR-1Um" secondAttribute="centerY" id="bNj-wz-sxA"/>
+                            <constraint firstItem="nKD-M9-9WW" firstAttribute="centerX" secondItem="lEE-QR-1Um" secondAttribute="centerX" id="p4L-jN-1Xq"/>
+                            <constraint firstAttribute="bottom" secondItem="nvo-fU-1Gz" secondAttribute="bottom" constant="10" id="sRm-HF-MWu"/>
+                            <constraint firstItem="nvo-fU-1Gz" firstAttribute="top" secondItem="lEE-QR-1Um" secondAttribute="top" constant="10" id="uP6-Xa-gek"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="lEE-QR-1Um" secondAttribute="trailing" constant="10" id="ROa-t5-4ul"/>
+                    <constraint firstItem="lEE-QR-1Um" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SnI-uG-Ete"/>
+                    <constraint firstItem="lEE-QR-1Um" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="eIc-k1-sqd"/>
+                    <constraint firstAttribute="bottom" secondItem="lEE-QR-1Um" secondAttribute="bottom" constant="10" id="eUB-xk-Ayj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="Protein" destination="abS-Dq-eYl" id="1vW-oO-mp6"/>
+                <outlet property="cellBubble" destination="lEE-QR-1Um" id="IaL-zu-XuK"/>
+                <outlet property="date" destination="nKD-M9-9WW" id="ZIT-Wn-kz8"/>
+                <outlet property="mealImage" destination="nvo-fU-1Gz" id="x6a-Mf-fOL"/>
+                <outlet property="name" destination="K6L-37-i07" id="FJ9-bo-FfW"/>
+            </connections>
+            <point key="canvasLocation" x="268.84057971014494" y="145.64732142857142"/>
+        </tableViewCell>
+    </objects>
+</document>
