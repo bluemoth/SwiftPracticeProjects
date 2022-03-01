@@ -11,6 +11,7 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate {
     
 
+
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         
         mapView.addAnnotations([london, oslo, paris, rome, washington])
+        
+        
         
     }
     
@@ -84,11 +87,29 @@ class ViewController: UIViewController, MKMapViewDelegate {
         guard let capital = view.annotation as? Capital else { return }
         
         let placeName = capital.title
-        let placeInfo = capital.info
+        //let placeInfo = capital.info
+        
+        
+        visitPlaceURL(placeName)
 
-        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+//        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
+//        ac.addAction(UIAlertAction(title: "OK", style: .default))
+//        present(ac, animated: true)
+    }
+    
+    /* Challenge 3: Below method works for pushing vc with webview. There is an issue with Washington DC and  formatting
+       cuasing it to crash the URL request method due to string formatting.
+     
+       Would like to play around with this method in future:
+       https://www.hackingwithswift.com/example-code/strings/how-to-convert-a-string-to-a-safe-format-for-url-slugs-and-filenames
+    
+     */
+    func visitPlaceURL(_ placeToVisit: String?) {
+        guard let place = placeToVisit else {return}
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Webpage") as? WebContentViewController {
+            vc.place = place
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 

@@ -14,6 +14,7 @@
 		8673CBA627CE99DC00A90092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8673CBA527CE99DC00A90092 /* Assets.xcassets */; };
 		8673CBA927CE99DC00A90092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8673CBA727CE99DC00A90092 /* LaunchScreen.storyboard */; };
 		8691A08927CE9BCE00A87758 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691A08827CE9BCE00A87758 /* Capital.swift */; };
+		86A2A91B27CEB4D8009688C7 /* WebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A2A91A27CEB4D8009688C7 /* WebContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8673CBA827CE99DC00A90092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8673CBAA27CE99DC00A90092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8691A08827CE9BCE00A87758 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
+		86A2A91A27CEB4D8009688C7 /* WebContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				8673CB9E27CE99DB00A90092 /* SceneDelegate.swift */,
 				8673CBA027CE99DB00A90092 /* ViewController.swift */,
 				8673CBA227CE99DB00A90092 /* Main.storyboard */,
+				86A2A91A27CEB4D8009688C7 /* WebContentViewController.swift */,
 				8691A08827CE9BCE00A87758 /* Capital.swift */,
 				8673CBA527CE99DC00A90092 /* Assets.xcassets */,
 				8673CBA727CE99DC00A90092 /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8673CBA127CE99DB00A90092 /* ViewController.swift in Sources */,
+				86A2A91B27CEB4D8009688C7 /* WebContentViewController.swift in Sources */,
 				8673CB9D27CE99DB00A90092 /* AppDelegate.swift in Sources */,
 				8691A08927CE9BCE00A87758 /* Capital.swift in Sources */,
 				8673CB9F27CE99DB00A90092 /* SceneDelegate.swift in Sources */,
