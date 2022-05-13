@@ -20,7 +20,7 @@ class ActionViewController: UIViewController {
         {
             if let itemProvider = inputItem.attachments?.first {
                 itemProvider.loadItem(forTypeIdentifier: kUTTypePropertyList as String) {
-                    [weak self] (dict, error) in 
+                    [weak self] (dict, error) in
                     
                 }
             }

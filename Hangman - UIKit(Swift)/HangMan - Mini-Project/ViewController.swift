@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var gameArt: UILabel!
+    var gameTitle: UILabel!
     var chosenLetter: UITextField!
     var usedLetters = [Character]()
     var wrongAnswers: Int = 0 {
@@ -82,11 +83,20 @@ class ViewController: UIViewController {
     """]
     
     
-    
     override func loadView() {
         
+        //MARK: - Asset Definitions
         view = UIView()
         view.backgroundColor = .white
+        
+        gameTitle = UILabel()
+        gameTitle.translatesAutoresizingMaskIntoConstraints = false
+        gameTitle.font = UIFont.systemFont(ofSize: 32)
+        gameTitle.textColor = .black
+        gameTitle.numberOfLines = 0
+        gameTitle.textAlignment = .center
+        view.addSubview(gameTitle)
+        
         
         let submit = UIButton(type: .system)
         submit.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +118,7 @@ class ViewController: UIViewController {
         
         gameArt = UILabel()
         gameArt.translatesAutoresizingMaskIntoConstraints = false
-        gameArt.font = UIFont.systemFont(ofSize: 32)
+        gameArt.font = UIFont.systemFont(ofSize: 28)
         gameArt.textColor = .black
         gameArt.numberOfLines = 0
         gameArt.textAlignment = .center
@@ -123,24 +133,41 @@ class ViewController: UIViewController {
         wordToGuessLabel.textAlignment = .center
         view.addSubview(wordToGuessLabel)
         
+        let myTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        myTextField.backgroundColor = .blue
+        myTextField.attributedPlaceholder = NSAttributedString(
+            string: "Placeholder Text",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
+        
+        
         chosenLetter = UITextField()
         chosenLetter.translatesAutoresizingMaskIntoConstraints = false
-        chosenLetter.placeholder = "Enter a letter"
+        //chosenLetter.placeholder = "Select a letter"
+        chosenLetter.attributedPlaceholder = NSAttributedString(string: "Select a letter", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         chosenLetter.textColor = .black
         chosenLetter.textAlignment = .center
         chosenLetter.font = UIFont.systemFont(ofSize: 30)
-        chosenLetter.isUserInteractionEnabled = true
+        chosenLetter.isUserInteractionEnabled = false
         view.addSubview(chosenLetter)
         
+        
+        //MARK: - UI Layout with Assets
         NSLayoutConstraint.activate([
-            gameArt.heightAnchor.constraint(equalToConstant: 300),
+            
+            gameTitle.heightAnchor.constraint(equalToConstant: 200),
+            gameTitle.widthAnchor.constraint(equalToConstant: 300),
+            gameTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            gameTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -350),
+            
+            //gameArt.heightAnchor.constraint(equalToConstant: 300),
             gameArt.widthAnchor.constraint(equalToConstant: 300),
             gameArt.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            gameArt.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -200),
+            gameArt.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -150),
             
             wordToGuessLabel.topAnchor.constraint(equalTo: gameArt.bottomAnchor),
             wordToGuessLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            wordToGuessLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            wordToGuessLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
             
             chosenLetter.topAnchor.constraint(equalTo: wordToGuessLabel.bottomAnchor),
             chosenLetter.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
@@ -158,7 +185,7 @@ class ViewController: UIViewController {
             buttonsView.heightAnchor.constraint(equalToConstant: 200),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
-            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
+            buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
             
         ])
         
@@ -188,13 +215,13 @@ class ViewController: UIViewController {
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
             }
         }
-        
-//        buttonsView.backgroundColor = .gray
-//        submit.backgroundColor = .red
-//        clear.backgroundColor = .blue
-//        gameArt.backgroundColor = .brown
-//        wordToGuess.backgroundColor = .cyan
-//        chosenLetter.backgroundColor = .systemPink
+//        Colors to enable outlines of UI
+        buttonsView.backgroundColor = .gray
+        submit.backgroundColor = .red
+        clear.backgroundColor = .blue
+        gameArt.backgroundColor = .brown
+        //wordToGuess.backgroundColor = .cyan
+        chosenLetter.backgroundColor = .systemPink
         
         }
     
@@ -208,8 +235,10 @@ class ViewController: UIViewController {
         beginGame()
     }
     
+    //MARK: - Game Logic
     @objc func beginGame(action: UIAlertAction! = nil) {
         gameArt.text = hangManArt[0]
+        gameTitle.text = "HangMan"
         usedLetters.removeAll()
         wrongAnswers = 0
         maskedWord = ""
@@ -233,6 +262,19 @@ class ViewController: UIViewController {
         }
     }
     
+    func gameOver(_ winLose: Bool) {
+        if (winLose) {
+            let ac = UIAlertController(title: "You win!", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Game Over", message: "You lose! The word was \(wordToGuess).", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
+            present(ac, animated: true)
+        }
+    }
+    
+    
     func getRandomWord() -> String {
         if let wordFileURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let wordContents = try? String(contentsOf: wordFileURL) {
@@ -255,6 +297,31 @@ class ViewController: UIViewController {
         chars[index] = newChar
         let modifiedString = String(chars)
         return modifiedString
+    }
+    
+    
+    
+    //MARK: - Letter, Submit, Clear Button Actions
+    @objc func clearTapped(_ sender: UIButton) {
+        if chosenLetter.text == "" {
+            return
+        } else {
+            activatedButtons.last?.isHidden = false
+            chosenLetter.text = ""
+        }
+    }
+
+    @objc func letterTapped(_ sender: UIButton) {
+        if chosenLetter.text != "" {
+            let ac = UIAlertController(title: "One letter already chosen!", message: "Submit or clear chosen letter.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK ", style: .default, handler: nil))
+            present(ac, animated: true)
+            return
+        }
+        guard let buttonTitle = sender.titleLabel?.text else { return }
+        chosenLetter.text = chosenLetter.text?.appending(buttonTitle)
+        activatedButtons.append(sender)
+        sender.isHidden = true
     }
     
     @objc func submitTapped(_ sender: UIButton) {
@@ -286,41 +353,6 @@ class ViewController: UIViewController {
         }
         chosenLetter.text = ""
         print(usedLetters)
-    }
-    
-    func gameOver(_ winLose: Bool) {
-        if (winLose) {
-            let ac = UIAlertController(title: "You win!", message: nil, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: "Game Over", message: "You lose! The word was \(wordToGuess).", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Play again?", style: .default, handler: beginGame))
-            present(ac, animated: true)
-        }
-    }
-    
-    @objc func clearTapped(_ sender: UIButton) {
-        if chosenLetter.text == "" {
-            return
-        } else {
-            activatedButtons.last?.isHidden = false
-            chosenLetter.text = ""
-        }
-    }
-
-    
-    @objc func letterTapped(_ sender: UIButton) {
-        if chosenLetter.text != "" {
-            let ac = UIAlertController(title: "One letter already chosen!", message: "Submit or clear chosen letter.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK ", style: .default, handler: nil))
-            present(ac, animated: true)
-            return
-        }
-        guard let buttonTitle = sender.titleLabel?.text else { return }
-        chosenLetter.text = chosenLetter.text?.appending(buttonTitle)
-        activatedButtons.append(sender)
-        sender.isHidden = true
     }
     
     

@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		8606D86B27AD9AC800160561 /* alphabet.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alphabet.txt; sourceTree = "<group>"; };
-		8671721C27A61A8600291CC3 /* MilestoneProject7_9_Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MilestoneProject7_9_Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8671721C27A61A8600291CC3 /* HangMan - Mini-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HangMan - Mini-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8671721F27A61A8600291CC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8671722127A61A8600291CC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8671722327A61A8600291CC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		8671721327A61A8600291CC3 = {
 			isa = PBXGroup;
 			children = (
-				8671721E27A61A8600291CC3 /* MilestoneProject7_9_Hangman */,
+				8671721E27A61A8600291CC3 /* HangMan - Mini-Project */,
 				8671721D27A61A8600291CC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,12 +52,12 @@
 		8671721D27A61A8600291CC3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8671721C27A61A8600291CC3 /* MilestoneProject7_9_Hangman.app */,
+				8671721C27A61A8600291CC3 /* HangMan - Mini-Project.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8671721E27A61A8600291CC3 /* MilestoneProject7_9_Hangman */ = {
+		8671721E27A61A8600291CC3 /* HangMan - Mini-Project */ = {
 			isa = PBXGroup;
 			children = (
 				8671721F27A61A8600291CC3 /* AppDelegate.swift */,
@@ -70,15 +70,15 @@
 				8606D86B27AD9AC800160561 /* alphabet.txt */,
 				86F89D3F27B2E9DE009FB951 /* start.txt */,
 			);
-			path = MilestoneProject7_9_Hangman;
+			path = "HangMan - Mini-Project";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8671721B27A61A8600291CC3 /* MilestoneProject7_9_Hangman */ = {
+		8671721B27A61A8600291CC3 /* HangMan - Mini-Project */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8671723027A61A8800291CC3 /* Build configuration list for PBXNativeTarget "MilestoneProject7_9_Hangman" */;
+			buildConfigurationList = 8671723027A61A8800291CC3 /* Build configuration list for PBXNativeTarget "HangMan - Mini-Project" */;
 			buildPhases = (
 				8671721827A61A8600291CC3 /* Sources */,
 				8671721927A61A8600291CC3 /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = MilestoneProject7_9_Hangman;
+			name = "HangMan - Mini-Project";
 			productName = MilestoneProject7_9_Hangman;
-			productReference = 8671721C27A61A8600291CC3 /* MilestoneProject7_9_Hangman.app */;
+			productReference = 8671721C27A61A8600291CC3 /* HangMan - Mini-Project.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8671721727A61A8600291CC3 /* Build configuration list for PBXProject "MilestoneProject7_9_Hangman" */;
+			buildConfigurationList = 8671721727A61A8600291CC3 /* Build configuration list for PBXProject "HangMan - Mini-Project" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8671721B27A61A8600291CC3 /* MilestoneProject7_9_Hangman */,
+				8671721B27A61A8600291CC3 /* HangMan - Mini-Project */,
 			);
 		};
 /* End PBXProject section */
@@ -299,7 +299,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VHMFV6J7GZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MilestoneProject7_9_Hangman/Info.plist;
+				INFOPLIST_FILE = "HangMan - Mini-Project/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -310,7 +310,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.8bitoctave.MilestoneProject7-9-Hangman";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.8bitoctave.HangMan-Mini-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -327,7 +327,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VHMFV6J7GZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MilestoneProject7_9_Hangman/Info.plist;
+				INFOPLIST_FILE = "HangMan - Mini-Project/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -338,7 +338,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.8bitoctave.MilestoneProject7-9-Hangman";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.8bitoctave.HangMan-Mini-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -349,7 +349,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8671721727A61A8600291CC3 /* Build configuration list for PBXProject "MilestoneProject7_9_Hangman" */ = {
+		8671721727A61A8600291CC3 /* Build configuration list for PBXProject "HangMan - Mini-Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8671722E27A61A8800291CC3 /* Debug */,
@@ -358,7 +358,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8671723027A61A8800291CC3 /* Build configuration list for PBXNativeTarget "MilestoneProject7_9_Hangman" */ = {
+		8671723027A61A8800291CC3 /* Build configuration list for PBXNativeTarget "HangMan - Mini-Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8671723127A61A8800291CC3 /* Debug */,
